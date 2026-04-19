@@ -1,0 +1,21 @@
+# Node.js (web)
+node_modules/
+dist/
+build/
+
+# Flutter (mobile)
+.dart_tool/
+.packages
+.pub/
+build/
+
+# .NET (API)
+bin/
+obj/
+
+# Common
+.env
+*.log
+coverage/
+.vscode/
+.DS_Store
