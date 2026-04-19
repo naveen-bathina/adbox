@@ -2,6 +2,13 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import App from '../App';
 
+// Mock fetch globally
+global.fetch = jest.fn(() =>
+  Promise.resolve({
+    json: () => Promise.resolve([]),
+  })
+) as jest.Mock;
+
 jest.mock('../api/admin', () => ({
     adminLogin: jest.fn(() => Promise.resolve({ token: 'mock-token' }))
 }));
@@ -15,9 +22,9 @@ describe('Dashboard API', () => {
         fireEvent.click(screen.getByText(/admin login/i));
         fireEvent.change(screen.getByLabelText(/email/i), { target: { value: 'admin@example.com' } });
         fireEvent.change(screen.getByLabelText(/password/i), { target: { value: 'password' } });
-        const loginButtons = screen.getAllByRole('button', { name: /login/i });
+        const loginButtons = screen.getAllByRole('button', { name: /login/i }); 
         const loginButton = loginButtons.find(btn => btn.getAttribute('type') === 'submit');
-        fireEvent.click(loginButton);
-        expect(await screen.findByText(/dashboard data/i)).toBeInTheDocument();
+        fireEvent.click(loginButton!);
+        expect(await screen.findByText(/dashboard data/i)).toBeInTheDocument(); 
     });
 });

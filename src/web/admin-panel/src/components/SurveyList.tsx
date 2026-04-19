@@ -54,8 +54,8 @@ export const SurveyList: React.FC = () => {
                 {surveys.map((s, i) => (
                     <li key={i}>
                         <b>{s.title}</b> - {s.description}
-                        <button onClick={() => handleEdit(i)} style={{marginLeft:8}}>Edit</button>
-                        <button onClick={() => handleDelete(i)} style={{marginLeft:4}}>Delete</button>
+                        <button onClick={() => handleEdit(i)} style={{ marginLeft: 8 }}>Edit</button>
+                        <button onClick={() => handleDelete(i)} style={{ marginLeft: 4 }}>Delete</button>
                     </li>
                 ))}
             </ul>
