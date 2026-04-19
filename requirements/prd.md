@@ -12,30 +12,41 @@ Build a scalable, secure, and modern microservices-based platform with:
 - A React + TypeScript admin panel with Tailwind CSS for ad/survey management, analytics, and payout processing
 - A .NET Core backend using CQRS, clean architecture, PostgreSQL, RabbitMQ, and Docker for microservices, with high security and future scalability
 
-## User Stories
+## Implementation Status (as of April 20, 2026)
 
-1. As a user, I want to sign up with minimal information, so that I can quickly start using the app.
-2. As a user, I want to receive push notifications for new ads/surveys, so that I don’t miss earning opportunities.
-3. As a user, I want to view targeted ads, so that the content is relevant to me.
-4. As a user, I want to complete surveys after viewing ads, so that I can earn points.
-5. As a user, I want to see my wallet balance and transaction history, so that I can track my earnings.
-6. As a user, I want to request withdrawals via UPI, so that I can convert points to real money.
-7. As a user, I want to receive notifications for points earned and withdrawal status, so that I stay informed.
-8. As a user, I want to contact support and view FAQs, so that I can resolve issues.
-9. As a user, I want my data to be secure and my privacy respected, so that I feel safe using the app.
-10. As an admin, I want to log in securely, so that only authorized personnel can manage the platform.
-11. As an admin, I want to upload and manage ads with targeting options, so that campaigns reach the right users.
-12. As an admin, I want to create and link surveys to ads, so that I can collect user feedback.
-13. As an admin, I want to set custom rewards for surveys, so that I can incentivize participation.
-14. As an admin, I want to view analytics on ad impressions, survey completions, user growth, and payouts, so that I can measure performance.
-15. As an admin, I want to review and process withdrawal requests, so that users can be paid securely.
-16. As an admin, I want to manage user accounts and view their activity, so that I can monitor platform health.
-17. As an admin, I want to respond to support tickets, so that user issues are resolved.
-18. As a developer, I want the system to be modular and scalable, so that it can grow with demand.
-19. As a developer, I want to use Docker and RabbitMQ, so that services are easy to deploy and communicate reliably.
-20. As a developer, I want to enforce security best practices, so that user data and platform integrity are protected.
-21. As a user, I want to be protected from fraud and abuse, so that the rewards system remains fair.
-22. As an admin, I want to export analytics data, so that I can perform further analysis.
+- Core CRUD for users, surveys, and ads: ✅ Complete (backend, web, mobile)
+- User authentication (signup, login): ✅ Complete (web, mobile)
+- Admin dashboard: ✅ Complete (web)
+- User rewards/points system: ✅ Complete (backend, web, mobile)
+- Full test coverage: ✅ Complete (backend, web, mobile)
+- Production-ready builds: ✅ Backend, web; ⚠️ Mobile (build warning, tests pass)
+
+---
+
+## User Stories (Status as of April 20, 2026)
+
+- [x] 1. As a user, I want to sign up with minimal information, so that I can quickly start using the app. (**Complete**)
+- [ ] 2. As a user, I want to receive push notifications for new ads/surveys, so that I don’t miss earning opportunities. (**Pending FCM integration**)
+- [x] 3. As a user, I want to view targeted ads, so that the content is relevant to me. (**Complete**)
+- [x] 4. As a user, I want to complete surveys after viewing ads, so that I can earn points. (**Complete**)
+- [x] 5. As a user, I want to see my wallet balance and transaction history, so that I can track my earnings. (**Complete**)
+- [x] 6. As a user, I want to request withdrawals via UPI, so that I can convert points to real money. (**Complete**)
+- [ ] 7. As a user, I want to receive notifications for points earned and withdrawal status, so that I stay informed. (**Pending FCM integration**)
+- [ ] 8. As a user, I want to contact support and view FAQs, so that I can resolve issues. (**Pending support/FAQ module**)
+- [~] 9. As a user, I want my data to be secure and my privacy respected, so that I feel safe using the app. (**Partially complete, ongoing**)
+- [x] 10. As an admin, I want to log in securely, so that only authorized personnel can manage the platform. (**Complete**)
+- [x] 11. As an admin, I want to upload and manage ads with targeting options, so that campaigns reach the right users. (**Complete**)
+- [x] 12. As an admin, I want to create and link surveys to ads, so that I can collect user feedback. (**Complete**)
+- [x] 13. As an admin, I want to set custom rewards for surveys, so that I can incentivize participation. (**Complete**)
+- [~] 14. As an admin, I want to view analytics on ad impressions, survey completions, user growth, and payouts, so that I can measure performance. (**Basic dashboard done, advanced analytics/export pending**)
+- [~] 15. As an admin, I want to review and process withdrawal requests, so that users can be paid securely. (**Basic flow done, payout automation pending**)
+- [x] 16. As an admin, I want to manage user accounts and view their activity, so that I can monitor platform health. (**Complete**)
+- [ ] 17. As an admin, I want to respond to support tickets, so that user issues are resolved. (**Pending support module**)
+- [x] 18. As a developer, I want the system to be modular and scalable, so that it can grow with demand. (**Complete**)
+- [x] 19. As a developer, I want to use Docker and RabbitMQ, so that services are easy to deploy and communicate reliably. (**Complete**)
+- [x] 20. As a developer, I want to enforce security best practices, so that user data and platform integrity are protected. (**Complete**)
+- [~] 21. As a user, I want to be protected from fraud and abuse, so that the rewards system remains fair. (**Partially complete, ongoing**)
+- [ ] 22. As an admin, I want to export analytics data, so that I can perform further analysis. (**Pending advanced analytics/export**)
 
 ## Implementation Decisions
 

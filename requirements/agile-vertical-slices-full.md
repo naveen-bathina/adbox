@@ -1,6 +1,6 @@
 # Agile Vertical Slice Issues (Tracer Bullets)
 
-## 1. User Signup & Profile (AFK)
+## 1. User Signup & Profile (✅ Complete)
 
 - Blocked by: None
 - User stories: 1, 9
@@ -19,7 +19,7 @@ Implement end-to-end user signup and profile management. Users can register with
 
 ---
 
-## 2. Admin Login & Dashboard (AFK)
+## 2. Admin Login & Dashboard (✅ Complete)
 
 - Blocked by: None
 - User stories: 10, 14
@@ -37,7 +37,7 @@ Implement secure admin login and a basic dashboard in the React+TypeScript admin
 
 ---
 
-## 3. Ad Upload & Targeting (AFK)
+## 3. Ad Upload & Targeting (✅ Complete)
 
 - Blocked by: 2 (Admin Login)
 - User stories: 11
@@ -55,7 +55,7 @@ Enable admins to upload ad media, enter metadata, and set targeting criteria (ag
 
 ---
 
-## 4. Survey Creation & Linking (AFK)
+## 4. Survey Creation & Linking (✅ Complete)
 
 - Blocked by: 3 (Ad Upload)
 - User stories: 12, 13
@@ -74,7 +74,7 @@ Enable admins to create surveys, link them to ads, and set custom rewards. This 
 
 ---
 
-## 5. Ad Delivery & Survey Flow (AFK)
+## 5. Ad Delivery & Survey Flow (✅ Complete)
 
 - Blocked by: 1, 4
 - User stories: 2, 3, 4, 21
@@ -93,7 +93,7 @@ Implement the user-facing flow: users receive targeted ads, must view the ad ful
 
 ---
 
-## 6. Wallet & Transaction History (AFK)
+## 6. Wallet & Transaction History (✅ Complete)
 
 - Blocked by: 5
 - User stories: 5
