@@ -21,18 +21,30 @@ class _SurveyListScreenState extends State<SurveyListScreen> {
   }
 
   Future<void> fetchSurveys() async {
-    setState(() { loading = true; error = null; });
+    setState(() {
+      loading = true;
+      error = null;
+    });
     try {
-      final res = await http.get(Uri.parse('http://localhost:5000/api/admin/surveys'));
+      final res =
+          await http.get(Uri.parse('http://localhost:5000/api/admin/surveys'));
       if (res.statusCode == 200) {
-        setState(() { surveys = jsonDecode(res.body); });
+        setState(() {
+          surveys = jsonDecode(res.body);
+        });
       } else {
-        setState(() { error = 'Failed to load surveys'; });
+        setState(() {
+          error = 'Failed to load surveys';
+        });
       }
     } catch (_) {
-      setState(() { error = 'Network error'; });
+      setState(() {
+        error = 'Network error';
+      });
     } finally {
-      setState(() { loading = false; });
+      setState(() {
+        loading = false;
+      });
     }
   }
 
@@ -43,7 +55,9 @@ class _SurveyListScreenState extends State<SurveyListScreen> {
       body: loading
           ? const Center(child: CircularProgressIndicator())
           : error != null
-              ? Center(child: Text(error!, style: const TextStyle(color: Colors.red)))
+              ? Center(
+                  child:
+                      Text(error!, style: const TextStyle(color: Colors.red)))
               : ListView.builder(
                   itemCount: surveys.length,
                   itemBuilder: (context, i) {
@@ -51,6 +65,18 @@ class _SurveyListScreenState extends State<SurveyListScreen> {
                     return ListTile(
                       title: Text(s['title'] ?? ''),
                       subtitle: Text(s['description'] ?? ''),
+                      trailing: IconButton(
+                        icon: const Icon(Icons.delete),
+                        onPressed: () async {
+                          // Minimal delete logic: call API and remove from list
+                          final res = await http.delete(Uri.parse('http://localhost:5000/api/admin/surveys/$i'));
+                          if (res.statusCode == 204) {
+                            setState(() {
+                              surveys.removeAt(i);
+                            });
+                          }
+                        },
+                      ),
                     );
                   },
                 ),
@@ -80,29 +106,41 @@ class _SurveyCreateScreenState extends State<SurveyCreateScreen> {
   String? error;
 
   Future<void> createSurvey() async {
-    setState(() { loading = true; error = null; });
+    setState(() {
+      loading = true;
+      error = null;
+    });
     try {
-      final res = await http.post(
-        Uri.parse('http://localhost:5000/api/admin/surveys'),
-        headers: { 'Content-Type': 'application/json' },
-        body: jsonEncode({
-          'title': title,
-          'description': description,
-          'type': 'survey',
-          'questions': [
-            { 'text': 'How satisfied are you?', 'type': 'rating', 'options': ['1','2','3','4','5'] }
-          ]
-        })
-      );
+      final res =
+          await http.post(Uri.parse('http://localhost:5000/api/admin/surveys'),
+              headers: {'Content-Type': 'application/json'},
+              body: jsonEncode({
+                'title': title,
+                'description': description,
+                'type': 'survey',
+                'questions': [
+                  {
+                    'text': 'How satisfied are you?',
+                    'type': 'rating',
+                    'options': ['1', '2', '3', '4', '5']
+                  }
+                ]
+              }));
       if (res.statusCode == 201) {
         Navigator.pop(context);
       } else {
-        setState(() { error = 'Failed to create survey'; });
+        setState(() {
+          error = 'Failed to create survey';
+        });
       }
     } catch (_) {
-      setState(() { error = 'Network error'; });
+      setState(() {
+        error = 'Network error';
+      });
     } finally {
-      setState(() { loading = false; });
+      setState(() {
+        loading = false;
+      });
     }
   }
 
