@@ -26,6 +26,10 @@ namespace UserService.Controllers
         [HttpPost]
         public IActionResult CreateSurvey([FromBody] SurveyCreateDto survey)
         {
+            if (survey == null)
+            {
+                return BadRequest(new { error = "Survey payload is required." });
+            }
             if (string.IsNullOrWhiteSpace(survey.Title) ||
                 string.IsNullOrWhiteSpace(survey.Description) ||
                 string.IsNullOrWhiteSpace(survey.Type) ||
