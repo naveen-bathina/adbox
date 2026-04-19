@@ -1,26 +1,4 @@
-        [HttpGet]
-        public IActionResult ListSurveys()
-        {
-            return Ok(_surveys);
-        }
 
-        [HttpPut("{index}")]
-        public IActionResult EditSurvey(int index, [FromBody] SurveyCreateDto updated)
-        {
-            if (index < 0 || index >= _surveys.Count)
-                return NotFound();
-            _surveys[index] = updated;
-            return Ok(updated);
-        }
-
-        [HttpDelete("{index}")]
-        public IActionResult DeleteSurvey(int index)
-        {
-            if (index < 0 || index >= _surveys.Count)
-                return NotFound();
-            _surveys.RemoveAt(index);
-            return NoContent();
-        }
 using Microsoft.AspNetCore.Mvc;
 
 namespace UserService.Controllers
@@ -45,6 +23,30 @@ namespace UserService.Controllers
         }
 
         private static readonly List<SurveyCreateDto> _surveys = new();
+
+        [HttpGet]
+        public IActionResult ListSurveys()
+        {
+            return Ok(_surveys);
+        }
+
+        [HttpPut("{index}")]
+        public IActionResult EditSurvey(int index, [FromBody] SurveyCreateDto updated)
+        {
+            if (index < 0 || index >= _surveys.Count)
+                return NotFound();
+            _surveys[index] = updated;
+            return Ok(updated);
+        }
+
+        [HttpDelete("{index}")]
+        public IActionResult DeleteSurvey(int index)
+        {
+            if (index < 0 || index >= _surveys.Count)
+                return NotFound();
+            _surveys.RemoveAt(index);
+            return NoContent();
+        }
 
         [HttpPost]
         public IActionResult CreateSurvey([FromBody] SurveyCreateDto survey)

@@ -3,7 +3,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class SurveyListScreen extends StatefulWidget {
-  const SurveyListScreen({Key? key}) : super(key: key);
+  final http.Client? client;
+  const SurveyListScreen({Key? key, this.client}) : super(key: key);
 
   @override
   State<SurveyListScreen> createState() => _SurveyListScreenState();
@@ -26,8 +27,9 @@ class _SurveyListScreenState extends State<SurveyListScreen> {
       error = null;
     });
     try {
-      final res =
-          await http.get(Uri.parse('http://localhost:5000/api/admin/surveys'));
+      final client = widget.client ?? http.Client();
+      final res = await client
+          .get(Uri.parse('http://localhost:5000/api/admin/surveys'));
       if (res.statusCode == 200) {
         setState(() {
           surveys = jsonDecode(res.body);
@@ -69,7 +71,9 @@ class _SurveyListScreenState extends State<SurveyListScreen> {
                         icon: const Icon(Icons.delete),
                         onPressed: () async {
                           // Minimal delete logic: call API and remove from list
-                          final res = await http.delete(Uri.parse('http://localhost:5000/api/admin/surveys/$i'));
+                          final client = widget.client ?? http.Client();
+                          final res = await client.delete(Uri.parse(
+                              'http://localhost:5000/api/admin/surveys/$i'));
                           if (res.statusCode == 204) {
                             setState(() {
                               surveys.removeAt(i);
@@ -92,7 +96,8 @@ class _SurveyListScreenState extends State<SurveyListScreen> {
 }
 
 class SurveyCreateScreen extends StatefulWidget {
-  const SurveyCreateScreen({Key? key}) : super(key: key);
+  final http.Client? client;
+  const SurveyCreateScreen({Key? key, this.client}) : super(key: key);
 
   @override
   State<SurveyCreateScreen> createState() => _SurveyCreateScreenState();
@@ -111,21 +116,23 @@ class _SurveyCreateScreenState extends State<SurveyCreateScreen> {
       error = null;
     });
     try {
-      final res =
-          await http.post(Uri.parse('http://localhost:5000/api/admin/surveys'),
-              headers: {'Content-Type': 'application/json'},
-              body: jsonEncode({
-                'title': title,
-                'description': description,
-                'type': 'survey',
-                'questions': [
-                  {
-                    'text': 'How satisfied are you?',
-                    'type': 'rating',
-                    'options': ['1', '2', '3', '4', '5']
-                  }
-                ]
-              }));
+      final client = widget.client ?? http.Client();
+      final res = await client.post(
+        Uri.parse('http://localhost:5000/api/admin/surveys'),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({
+          'title': title,
+          'description': description,
+          'type': 'survey',
+          'questions': [
+            {
+              'text': 'How satisfied are you?',
+              'type': 'rating',
+              'options': ['1', '2', '3', '4', '5']
+            }
+          ]
+        }),
+      );
       if (res.statusCode == 201) {
         Navigator.pop(context);
       } else {
