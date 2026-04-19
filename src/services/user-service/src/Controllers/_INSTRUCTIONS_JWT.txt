@@ -1,0 +1,2 @@
+// Add this to your .csproj if not present:
+// <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.0" />

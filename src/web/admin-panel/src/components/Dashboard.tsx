@@ -1,0 +1,26 @@
+import React, { useEffect, useState } from 'react';
+import { fetchDashboardData } from '../api/dashboard';
+
+const Dashboard: React.FC = () => {
+    const [data, setData] = useState<string | null>(null);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        // In a real app, get token from context or storage
+        const token = localStorage.getItem('adminToken') || '';
+        fetchDashboardData(token).then(result => {
+            if (result.data) setData(result.data);
+            else setError(result.error || 'Unknown error');
+        });
+    }, []);
+
+    return (
+        <div>
+            <h1>Dashboard</h1>
+            {error && <div style={{ color: 'red' }}>{error}</div>}
+            {data ? <div>Dashboard data: {data}</div> : <div>Loading...</div>}
+        </div>
+    );
+};
+
+export default Dashboard;

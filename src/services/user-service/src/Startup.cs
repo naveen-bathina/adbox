@@ -14,6 +14,19 @@ namespace UserService.Api
         {
             services.AddControllers();
             // Register CQRS handlers, MediatR, etc. (to be implemented)
+
+            // Add authentication and authorization
+            services.AddAuthentication("Bearer")
+                .AddJwtBearer("Bearer", options =>
+                {
+                    options.Authority = "https://your-auth-server"; // TODO: Replace with real authority
+                    options.Audience = "user-service-api";
+                    options.RequireHttpsMetadata = false;
+                });
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -23,6 +36,8 @@ namespace UserService.Api
                 app.UseDeveloperExceptionPage();
             }
             app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
