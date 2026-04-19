@@ -22,6 +22,7 @@ const AdminLoginForm: React.FC<AdminLoginFormProps> = ({ onSuccess }) => {
         setLoading(false);
         if (result.token) {
             setSuccess(true);
+            localStorage.setItem('adminToken', result.token);
             if (onSuccess) onSuccess();
         } else {
             setError(result.error || 'Login failed: Invalid credentials');
