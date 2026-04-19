@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { fetchDashboardData } from '../api/dashboard';
 import { SurveyCreateForm } from './SurveyCreateForm';
+import { SurveyList } from './SurveyList';
 
 const Dashboard: React.FC = () => {
     const [data, setData] = useState<string | null>(null);
@@ -19,6 +20,7 @@ const Dashboard: React.FC = () => {
         <div>
             <h1>Dashboard</h1>
             <SurveyCreateForm />
+            <SurveyList />
             {error && <div style={{ color: 'red' }}>{error}</div>}
             {data ? <div>Dashboard data: {data}</div> : <div>Loading...</div>}
         </div>
