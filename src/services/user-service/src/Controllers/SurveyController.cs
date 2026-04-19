@@ -21,6 +21,8 @@ namespace UserService.Controllers
             public SurveyQuestionDto[] Questions { get; set; } = new SurveyQuestionDto[0];
         }
 
+        private static readonly List<SurveyCreateDto> _surveys = new();
+
         [HttpPost]
         public IActionResult CreateSurvey([FromBody] SurveyCreateDto survey)
         {
@@ -31,8 +33,8 @@ namespace UserService.Controllers
             {
                 return BadRequest(new { error = "Missing required fields or questions." });
             }
-            // Minimal implementation for TDD: echo back the title
-            return Created(string.Empty, new { title = survey.Title });
+            _surveys.Add(survey);
+            return Created(string.Empty, survey);
         }
     }
 }
