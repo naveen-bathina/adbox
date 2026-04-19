@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'features/auth/signup_screen.dart';
 import 'features/auth/login_screen.dart';
 import 'features/survey/survey_screens.dart';
+import 'features/survey/user_points_screen.dart';
 
 void main() {
   runApp(const AdBoxApp());
@@ -46,6 +47,16 @@ class _AuthSwitcherState extends State<AuthSwitcher> {
                   );
                 },
                 child: const Text('Go to Surveys'),
+              ),
+              const SizedBox(width: 16),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => const UserPointsScreen()),
+                  );
+                },
+                child: const Text('User Rewards'),
               ),
                 onPressed: () => setState(() => showLogin = true),
                 child: const Text('Login'),
