@@ -1,3 +1,32 @@
+                [Fact]
+                public async Task Admin_Can_Persist_Survey()
+                {
+                    // Arrange
+                    var survey = new SurveyCreateDto
+                    {
+                        Title = "Persisted Survey",
+                        Description = "Should be stored in-memory",
+                        Type = "survey",
+                        Questions = new[]
+                        {
+                            new SurveyQuestionDto
+                            {
+                                Text = "Q1",
+                                Type = "text",
+                                Options = new string[0]
+                            }
+                        }
+                    };
+
+                    // Act
+                    var response = await _client.PostAsJsonAsync("/api/admin/surveys", survey);
+
+                    // Assert
+                    Assert.Equal(HttpStatusCode.Created, response.StatusCode);
+                    var created = await response.Content.ReadFromJsonAsync<SurveyCreateDto>();
+                    Assert.Equal("Persisted Survey", created.Title);
+                    // Note: In-memory persistence is not externally verifiable without a GET endpoint, but this ensures the POST works.
+                }
         [Fact]
         public async Task Admin_Cannot_Create_Invalid_Survey()
         {
