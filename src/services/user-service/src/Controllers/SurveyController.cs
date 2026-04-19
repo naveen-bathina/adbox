@@ -34,7 +34,8 @@ namespace UserService.Controllers
                 return BadRequest(new { error = "Missing required fields or questions." });
             }
             _surveys.Add(survey);
-            return Created(string.Empty, survey);
+            // Return the full survey object as the response
+            return Created($"/api/admin/surveys/{_surveys.Count}", survey);
         }
     }
 }
